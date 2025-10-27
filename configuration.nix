@@ -74,11 +74,11 @@
      ];
    };
 
-   programs.firefox.enable = true;
-
+  # programs.firefox.enable = true;
 
    nixpkgs.config.allowUnfree = true;
 
+   hardware.graphics.enable = true;
 
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
@@ -88,17 +88,24 @@
      fastfetch
      git
      vscodium
+     ghostty
 
      telegram-desktop
      spotify
+     google-chrome
 
      # KDE
      kdePackages.discover
      kdePackages.kcalc
      kdePackages.kcharselect
      kdePackages.sddm-kcm
+     kdePackages.plasma-browser-integration
    ];
 
+   hardware.graphics.extraPackages = with pkgs; [
+     intel-media-driver
+     vaapiIntel
+   ];
 
 # Swap File
 swapDevices = [{
