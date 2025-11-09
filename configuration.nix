@@ -10,8 +10,14 @@
       ./hardware-configuration.nix
     ];
 
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
+  # GRUB Bootloader.
+  boot.loader.grub = {
+   enable = true;
+   efiSupport = true;
+   device = "nodev";
+   useOSProber = true;
+  };
+
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Use latest kernel.
@@ -109,6 +115,9 @@
      kdePackages.kcharselect
      kdePackages.sddm-kcm
      kdePackages.plasma-browser-integration
+
+     # For bootloader.
+     os-prober
    ];
 
    hardware.graphics.extraPackages = with pkgs; [
